@@ -1,0 +1,25 @@
+{% include 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            {% if registered %}
+                <h1>Thank you for registeration...!!</h1>
+                <p>please proceed to <a href="{% url 'login' %}">login</a></p>
+            {% else %}
+                <h3>Registeration Form</h3>
+                <br>
+                <div class="coard card-body">
+                    <form enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        {{ form1.as_p }}
+                        {{ form2.as_p }}
+                        <input type="submit" class="btn btn-primary" value="REGISTER">
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+    

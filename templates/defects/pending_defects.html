@@ -1,0 +1,35 @@
+{% extends 'defects/header.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="jumbotron">
+        <h1 class="text-center text-danger">Pending Defects</h1>
+        <table class="table table-striped table-bordered mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Assigned To</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for defect in pending %}
+                <tr>
+                    <td>{{ defect.id }}</td>
+                    <td>{{ defect.defect_name }}</td>
+                    <td>{{ defect.defect_type }}</td>
+                    <td>{{ defect.assigned_to.username }}</td>
+                    <td>{{ defect.priority }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No pending defects.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

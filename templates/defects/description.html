@@ -1,0 +1,62 @@
+
+    {% extends 'defects/header.html' %}
+    
+
+        <!-- <div class="container">
+            <div class="jumbotron">
+                <h3>Defect Description</h3>
+                <table class = "table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>defects_id</th>
+                            <th>defects_name</th>
+                            <th>defects type</th>
+                            <th>assigned_by</th>
+                            <th>assigned_to</th>
+                            <th>description</th>
+                            <th>priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ defect.defect_id }}</td>
+                            <td>{{ defect.defect_name }}</td>
+                            <td>{{ defect.defect_type }}</td>
+                            <td>{{ defect.assigned_by }}</td>
+                            <td>{{ defect.assigned_to }}</td>
+                            <td>{{ defect.description }}</td>
+                            <h5>defect  Screeshots</h5>
+                            {% for i in defect.defectslists.all %}
+                            <img src="{{i.defect_img.url}}" alt="no img">
+                            <td>{{ defect.priority }}</td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div> -->
+  
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        {% block content %}
+        <div class="container">
+            <div class="jumbotron">
+                <h3>Defect Description</h3>
+                {{ defect.description }}
+                {{ defect.defect_name }}
+                <h5>defect Screeenshots</h5>
+                {% for i in defect.defectslists.all %}
+                            <img src="{{i.defect_img.url}}" alt="no img">
+                {% endfor %}
+                </div>
+                </div>
+                {% endblock %}
+    </body>
+    </html>
+    

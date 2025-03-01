@@ -1,0 +1,73 @@
+{% extends 'defects/header.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <!-- Flex container to align left and right elements -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <!-- Add New Defect button (left) -->
+            <a href="{% url 'add_defects' %}" class="btn btn-primary btn-sm">
+                <i class="bx bx-plus-circle"></i> Add New Defect
+            </a>
+            <!-- Total Defect Count (right) -->
+            <span class="badge bg-danger p-3">Total Defects: {{ defect_count }}</span>
+        </div>
+        <div class="jumbotron">
+            <h3>List of All Defects</h3>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Defect ID</th>
+                        <th>Defect Name</th>
+                        <th>Defect Type</th>
+                        <th>Assigned By</th>
+                        <th>Assigned To</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in defects %}
+                    <tr>
+                        <td>{{ i.defect_id }}</td>
+                        <td>{{ i.defect_name }}</td>
+                        <td>{{ i.defect_type }}</td>
+                        <td>{{ i.assigned_by }}</td>
+                        <td>{{ i.assigned_to }}</td>
+                        <td><a href="{% url 'edit' id=i.id %}"><i class='bx bxs-edit'></i></a></td>
+                        <td><a href="{% url 'delete' id=i.id %}" class="text-danger"><i class='bx bxs-trash'></i></a></td>
+                        <td><a href="{% url 'descr' id=i.id %}">More Info</a></td>
+                        <td>
+                            {% if i.priority == "HIGH" %}
+                                <i class='bx bxs-bell-ring bx-flip-horizontal bx-tada'></i> 
+                            {% elif i.priority == "MEDIUM" %}
+                                <i class='bx bxs-bell-ring bx-flashing'></i>
+                            {% elif i.priority == "LOW" %}
+                                <i class='bx bxs-bell-ring bx-spin'></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="?pg=1"><<</a>
+                  </li>
+                  {% if defects.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?pg={{ defects.previous_page_number }}">{{ defects.previous_page_number }}</a></li>
+                  {% endif %}
+                  <li class="page-item"><a class="page-link" href="?pg={{ defects.number }}">{{ defects.number }}</a></li>
+                  {% if defects.has_next %}
+                    <li class="page-item"><a class="page-link" href="?pg={{ defects.next_page_number }}">{{ defects.next_page_number }}</a></li>
+                  {% endif %}
+                  <li class="page-item">
+                    <a class="page-link" href="#">>></a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+    </div>
+{% endblock %}

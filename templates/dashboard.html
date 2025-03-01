@@ -1,0 +1,66 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-center text-primary mb-4">Dashboard</h2>
+
+    <!-- Defect Statistics Section -->
+    <div class="row text-center">
+      <div class="col-md-4 mb-3">
+        <div class="card border-primary shadow-sm">
+          <div class="card-body">
+            <h5 class="text-primary">Total Defects Assigned</h5>
+            <h2 class="fw-bold text-dark">{{ total_defects_assigned }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <div class="card border-success shadow-sm">
+          <div class="card-body">
+            <h5 class="text-success">Total Defects Completed</h5>
+            <h2 class="fw-bold text-dark">{{ total_defects_completed }}</h2>
+          </div>
+        </div>
+      </div> 
+
+      <div class="col-md-4 mb-3">
+        <div class="card border-danger shadow-sm">
+          <div class="card-body">
+            <h5 class="text-danger">Total Defects Pending</h5>
+            <h2 class="fw-bold text-dark">{{ total_defects_pending }}</h2>
+          </div>
+        </div>
+      </div> 
+
+      <div class="col-md-4 mb-3">
+        <div class="card border-danger shadow-sm">
+          <div class="card-body">
+            <h5 class="text-danger">Total money</h5>
+            <h2 class="fw-bold text-dark">{{ total_amount }}</h2>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <hr class="my-4">
+
+    <!-- User Profile Info Section -->
+    <div class="bg-light p-4 rounded">
+      <h4 class="mb-3 text-primary">User Profile</h4>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone:</strong> {{ user.userprofile.phone }}</p>
+      <p><strong>Address:</strong> {{ user.userprofile.address }}</p>
+      <p><strong>City:</strong> {{ user.userprofile.city }}</p>
+      <p><strong>State:</strong> {{ user.userprofile.state }}</p>
+      <p><strong>Zipcode:</strong> {{ user.userprofile.zipcode }}</p>
+
+      <a class="btn btn-primary mt-3" href="{% url 'edit' %}">Edit Profile</a>
+    </div>
+  </div>
+</div>   
+
+{% endblock %}

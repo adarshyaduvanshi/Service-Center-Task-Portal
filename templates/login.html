@@ -1,0 +1,17 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>Login Form</h3>
+        <div class="card card-body">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <label for="">Username: <input type="text" name="username" id="" placeholder="Enter username" required></label><br><br>
+                <label for="">Password: <input type="password" name="password" id="" placeholder="Enter password" required></label><br><br>
+                <input type="submit" class="btn btn-success" value="Login">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}  
